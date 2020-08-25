@@ -1,106 +1,44 @@
+
 import React, { Component } from 'react'
-import { Link, Route } from 'react-router-dom'
-import ShowPost from './ShowPost'
-
-
+import {Link} from 'react-router-dom'
 
 
 export default class CreatePost extends Component {
-
-      
-      state={
-      userName:"",
-      title:"",
-      content:"",
-      list:[]
-    }
-
- 
-
-    updateInput(key, value){
-      this.setState({
-        [key]:value
-
-      })
-    }
-
-    addItem(){
-      const userName = {
-          id: 1 + Math.random(),
-          value: this.state.userName.slice()
-      };
-      const title = {
-        id: 1 + Math.random(),
-        value: this.state.title.slice()
-    };
-    const content = {
-        id: 1 + Math.random(),
-        value: this.state.content.slice()
-    };
-
-      const list = [...this.state.list];
-
-      list.push(userName, title, content);
-
-      this.setState({
-        list,
-        userName:"",
-        title:"",
-        content:"",
-      });
-
-    }
-
-    deleteItem (id) {
-      const list = [...this.state.list];
-      const updateList = list.filter(item => item.id !== id);
-
-      this.setState({list: updateList});
-    }
-  
-    render () {
-      return (
+    render() {
+        return (
           <div>
-           
             <input
             type="text"
+            name="username"
             placeholder="Username"
-            value={this.state.userName}
-            onChange={e=> this.updateInput("userName", e.target.value)}
+            /* value={this.props.username} */
+            onChange={this.props.addItem}
             />
             <input
             type="text"
+            name="title"
             placeholder="Title"
-            value={this.state.title}
-            onChange={e=> this.updateInput("title", e.target.value)}
+            value={this.props.title}
+            onChange={this.props.addItem}
             />
             <input
             type="text"
+            name="content"
             placeholder="Content"
-            value={this.state.content}
-            onChange={e=> this.updateInput("content", e.target.value)}
+            value={this.props.content}
+            onChange={this.props.addItem}
             />
             
-            <button onClick={()=> this.addItem()}>Add</button>
-            <Link to={{pathname:`/showpost/${this.state.list}`,ForwardedUser:this.state.list}}><button onClick={()=> this.addItem()}>Post</button></Link> 
-            
-            
-            <br/>
-            
-            <ul className="formSaved">
-              {this.state.list.map(item => {
-                return (
-                 
-                  <li key={item.id}> {item.value} <button onClick={()=>this.deleteItem(item.id)}> X </button> </li>
-              
-                  
-                )
-              })}
-            </ul>
-            
+            <button type="submit" onClick={this.props.submit}>
+            <Link 
+            to={{pathname:`/showpost/${this.props.list}`,
+            ForwardedUser:this.props.userName,
+            ForwarTitle: this.props.title,
+            ForwarContent: this.props.content,
+            ForwardedTime: this.props.postTime,
+            }}> Add </Link> </button>
+            <br/> 
           </div>
-      );
+        );
     }
-  }
-
-
+}

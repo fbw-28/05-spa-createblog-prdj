@@ -1,12 +1,34 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 
 export default function ShowPost(props) {
    
-    let user = props.location.ForwardedUser;
-
+    console.log(props);
+    
     return (
         <div>
-        <h1>Post:{user &&  user.value} </h1>
+        {props.list && props.list.map((post) => {
+            return (
+                <>
+                <header>
+                <h1>{post.title}</h1>
+                </header>
+                
+                <section>
+                <p>{post.content}</p>
+                </section>
+                
+                <section>
+                <p>{post.userName} wrote at: {post.postTime}</p>
+                </section>
+                
+                </>
+            );
+          }
+        )
+        
+        
+        }
          
         </div>
     );
