@@ -1,0 +1,38 @@
+.navBar{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    list-style: none;  
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    font-size: 21px;
+    font-family: sans-serif;
+    text-decoration: none; 
+    margin:0 26px 0 0;
+}
+
+li::before {
+    content: "$"; 
+    color: red;
+    }
+
+.welcome{
+    margin-left: 148px;
+    display: flex;
+    align-items: center;
+    height: 118px;
+    background-color: rgba(224, 17, 17, 0.609);
+    }
+
+h1{
+    margin-left: 26px;
+}
+
+.formSaved{
+    list-style: none;
+}
